@@ -378,6 +378,7 @@
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 6px;
+      min-width: 0;
     }
 
     .card-icon {
@@ -445,6 +446,11 @@
       margin-bottom: 0;
       display: inline-block;
       position: relative;
+      min-width: 0;
+      /* ← add this to the existing h3.card-title rule */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     h3.card-title .underline-svg {
@@ -1090,7 +1096,7 @@
           desc: 'Built using MapKit, this app guides users through park trails using a custom graph structure overlay and a proprietary A* pathfinding algorithm. It delivers real-time location tracking and detailed information on historical points of interest, ensuring visitors never get lost even with limited connectivity.',
           tags: ['SwiftUI', 'MapKit', 'Core Graphics'],
           icon: 'Assets/Apps/Icons/RealGOIconPortfolio.png',
-          assets: ['Assets/Apps/RealGO/RealGO_1.png', 'Assets/Apps/RealGO/RealGO_2.png', 'Assets/Apps/RealGO/RealGO_3.png'],
+          assets: ['Assets/Apps/RealGO/RealGO_1.PNG', 'Assets/Apps/RealGO/RealGO_2.PNG', 'Assets/Apps/RealGO/RealGO_3.PNG'],
           links: [{ label: 'App Store →', url: 'https://apps.apple.com/it/app/realgo/id6768687366?l=en-GBRealGO' }]
         },
         {
