@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rosario d'Antonio — iOS Developer &amp; Illustrator</title>
+  <meta name="description" content="Portfolio of iOS apps and prototypes — code and illustration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #0B0F19;
+      --ink: #F8FAFC;
+      --swift-orange: #38BDF8;
+      --sketch-blue: #818CF8;
+      --mute: #ADB6C2;
+      --card: #1E293B;
+      --card-border: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--swift-orange);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ---------- top nav ---------- */
+    header.site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 15, 25, 0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .nav-mark {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-mark .dot {
+      color: var(--swift-orange);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      color: var(--mute);
+      transition: color .15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      padding: 96px 0 0;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-photo-col {
+        order: -1;
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--swift-orange);
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--swift-orange);
+      display: inline-block;
+    }
+
+    h1.hero-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(48px, 9vw, 96px);
+      line-height: 0.96;
+      letter-spacing: -0.01em;
+    }
+
+    h1.hero-name .hero-developer {
+      color: var(--swift-orange);
+      /* #38BDF8 — light blue */
+    }
+
+    h1.hero-name em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--sketch-blue);
+    }
+
+    h1.hero-name .hero-name-secondary {
+      font-size: 0.6em;
+    }
+
+    .hero-sub {
+      margin-top: 26px;
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--mute);
+      max-width: 540px;
+      line-height: 1.55;
+    }
+
+    .hero-meta {
+      margin-top: 34px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 7px 13px;
+      border: 1px solid var(--card-border);
+      border-radius: 99px;
+      color: var(--ink);
+      background: var(--color);
+    }
+
+    /* photo + signature, anchored to a real portrait */
+    .hero-photo-col {
+      position: relative;
+      flex: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: repeating-linear-gradient(135deg, #EFEAD9 0 14px, #E8E2CE 14px 28px);
+      border: 3px solid var(--card);
+      box-shadow: 0 10px 30px -8px rgba(28, 26, 23, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mute);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-signature {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .hero-signature-name {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 20px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .hero-scribble {
+      display: block;
+      width: 118px;
+      margin: 2px auto 0;
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    @media (max-width: 760px) {
+      .hero-photo {
+        width: 160px;
+        height: 160px;
+      }
+
+      .hero-signature-name {
+        font-size: 18px;
+      }
+
+      .hero-scribble {
+        width: 100px;
+      }
+    }
+
+    .divider {
+      width: 100%;
+      height: 28px;
+      margin: 20px 0 0;
+    }
+
+    /* ---------- section shell ---------- */
+    section {
+      padding: 84px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 44px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--mute);
+      letter-spacing: 0.04em;
+    }
+
+    h2.section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: clamp(30px, 4vw, 42px);
+      margin-top: 6px;
+    }
+
+    .section-note {
+      font-size: 14px;
+      color: var(--mute);
+      max-width: 280px;
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      .section-note {
+        text-align: left;
+      }
+    }
+
+    /* ---------- shipped project cards ---------- */
+    .shipped-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 760px) {
+      .shipped-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      position: relative;
+      transition: transform .2s ease, box-shadow .2s ease;
+      text-align: left;
+      width: 100%;
+      display: block;
+      padding: 0;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px -12px rgba(28, 26, 23, 0.18);
+    }
+
+    .card::after {
+      content: none;
+    }
+
+    .card-body {
+      padding: 24px 26px 26px;
+      display: flex;
+      gap: 18px;
+    }
+
+    .card .status-tab {
+      margin-bottom: 0;
+      flex: none;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .card-icon {
+      width: 64px;
+      height: 64px;
+      flex: none;
+      border-radius: 14px;
+      background: #E3F2FD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mute);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      text-align: center;
+      line-height: 1.3;
+      padding: 4px;
+      box-shadow: 0 2px 6px rgba(28, 26, 23, 0.12);
+    }
+
+    .card-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .card-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .status-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 4px 9px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .status-tab.shipped {
+      background: #FFE8DC;
+      color: #B7470F;
+    }
+
+    .status-tab.prototype {
+      background: #E4ECF7;
+      color: var(--sketch-blue);
+    }
+
+    .status-tab::before {
+      content: '●';
+      font-size: 8px;
+    }
+
+    h3.card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 21px;
+      font-weight: 600;
+      margin-bottom: 0;
+      display: inline-block;
+      position: relative;
+    }
+
+    h3.card-title .underline-svg {
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 8px;
+      opacity: 0;
+      transform: scaleX(0.92) translateY(2px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .card:hover h3.card-title .underline-svg {
+      opacity: 1;
+      transform: scaleX(1) translateY(0);
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--mute);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--mute);
+      border: 1px solid var(--card-border);
+      padding: 3px 9px;
+      border-radius: 5px;
+    }
+
+    .tap-hint {
+      margin-top: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--swift-orange);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ---------- prototypes grid (denser, same card structure) ---------- */
+    .proto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .proto-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .proto-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proto-grid .card-body {
+      padding: 18px 20px 20px;
+      gap: 14px;
+    }
+
+    .proto-grid .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 11px;
+      font-size: 8px;
+    }
+
+    .proto-grid .card-icon img {
+      border-radius: 11px;
+    }
+
+    .proto-grid h3.card-title {
+      font-size: 17px;
+    }
+
+    .proto-grid .card-desc {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .proto-grid .card::after {
+      content: none;
+    }
+
+    /* ---------- about / contact ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    @media (max-width:760px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    .about-text p {
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: var(--mute);
+      margin-bottom: 16px;
+      max-width: 480px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      color: var(--ink);
+      border-radius: 16px;
+      padding: 32px 30px;
+    }
+
+    .contact-card .contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--swift-orange);
+      /* darker tan — readable on the light card */
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .contact-list {
+      list-style: none;
+    }
+
+    .contact-list li {
+      border-top: 1px solid rgba(11, 15, 25, 0.12);
+      /* dark divider instead of light */
+      padding: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+
+
+    .contact-list li:first-child {
+      border-top: none;
+    }
+
+    .contact-list a {
+      transition: color .15s ease;
+    }
+
+    .contact-list a:hover {
+      color: var(--swift-orange);
+    }
+
+    .arrow {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--swift-orange);
+    }
+
+    footer {
+      padding: 36px 0 56px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--mute);
+    }
+
+    /* ================= MODAL / LIGHTBOX ================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 26, 23, 0.66);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 24px;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--card);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 780px;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      margin: 16px 16px 0 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 1px solid var(--card-border);
+      font-size: 18px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+    }
+
+    .modal-close:hover {
+      background: var(--card-border);
+    }
+
+    .modal-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 28px 32px 0;
+    }
+
+    .modal-icon {
+      width: 128px;
+      height: 128px;
+      border-radius: 14px;
+      flex: none;
+      background: #E3F2FD;
+      box-shadow: 0 2px 6px rgba(28, 26, 23, 0.12);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mute);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      text-align: center;
+      line-height: 1.3;
+      padding: 4px;
+    }
+
+    .modal-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .modal-titles h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .modal-body {
+      padding: 20px 32px 32px;
+    }
+
+    .modal-desc {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--mute);
+      margin: 14px 0 20px;
+      max-width: 600px;
+    }
+
+    .modal-links {
+      display: flex;
+      gap: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }
+
+    .modal-links a {
+      border-bottom: 1px solid var(--swift-orange);
+      padding-bottom: 2px;
+    }
+
+    .modal-links a.disabled {
+      color: var(--mute);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .gallery-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--mute);
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-items: start;
+      /* lets rows be uneven heights without stretching items */
+    }
+
+
+    .asset-thumb {
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      background: repeating-linear-gradient(45deg, #F0E9D6 0 10px, #E9E1C8 10px 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: var(--mute);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      text-align: center;
+      padding: 0px;
+      margin-bottom: 12px;
+      break-inside: avoid;
+      /* placeholder slots (no image yet) keep a fixed shape */
+      aspect-ratio: 9/16;
+    }
+
+    .asset-thumb.has-image {
+      /* once a real image loads, let the thumb take the image's own
+         intrinsic aspect ratio instead of forcing 9:16 */
+      aspect-ratio: auto;
+      background: none;
+    }
+
+    .asset-thumb img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .asset-thumb:nth-child(3n+2) {
+      background: repeating-linear-gradient(135deg, #E4ECF7 0 10px, #D8E2F2 10px 20px);
+    }
+
+    /* full screenshot viewer, nested overlay above modal */
+    .viewer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 9, 8, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 24px;
+    }
+
+    .viewer-backdrop.open {
+      display: flex;
+    }
+
+    .viewer-img-wrap {
+      max-width: 480px;
+      width: 100%;
+      max-height: 85vh;
+      border-radius: 16px;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #A89F8E;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .viewer-img-wrap img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .viewer-close {
+      position: absolute;
+      top: -46px;
+      right: 0;
+      color: #F7F4EC;
+      font-size: 22px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .viewer-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #F7F4EC;
+      font-size: 28px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+    }
+
+    .viewer-nav:hover {
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .viewer-prev {
+      left: -58px;
+    }
+
+    .viewer-next {
+      right: -58px;
+    }
+
+    @media (max-width:600px) {
+      .viewer-prev {
+        left: 4px;
+      }
+
+      .viewer-next {
+        right: 4px;
+      }
+
+      .viewer-nav {
+        background: rgba(0, 0, 0, 0.45);
+      }
+    }
+
+    .viewer-count {
+      position: absolute;
+      bottom: -32px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #A89F8E;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+
+    body.modal-locked {
+      overflow: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .card,
+      h3.card-title .underline-svg {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-mark">rosario<span class="dot">.</span>dantonio</a>
+      <nav class="nav-links">
+        <a href="#shipped">shipped</a>
+        <a href="#prototypes">prototypes</a>
+        <a href="#about">about</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <p class="hero-eyebrow">AVAILABLE FOR WORK</p>
+            <h1 class="hero-name">iOS <span class="hero-developer">developer</span>.<br><span
+                class="hero-name-secondary"><em>Illustrator,</em> too.</span></h1>
+            </h1>
+            <p class="hero-sub">I build native iOS apps end to end — interface, logic, and the icons and art inside
+              them. Tap a project to see screenshots and assets.</p>
+            <div class="hero-meta">
+              <span class="pill" style="background: var(--swift-orange)">Swift / SwiftUI</span>
+              <span class="pill" style="background: var(--swift-orange)">MapKit</span>
+              <span class="pill" style="background: var(--swift-orange)">WidgetKit</span>
+              <span class="pill" style="background: var(--swift-orange)">watchOS</span>
+              <span class="pill" style="background: var(--sketch-blue)">Digital Illustration</span>
+              <span class="pill" style="background: var(--sketch-blue)">Pixel Art</span>
+              <span class="pill" style="background: var(--sketch-blue)">Blender</span>
+              <span class="pill" style="background: var(--sketch-blue)">Sketch</span>
+            </div>
+          </div>
+
+          <div class="hero-photo-col">
+            <div class="hero-photo">
+              <!-- swap with: <img src="assets/profile.jpg" alt="Jordan Reyes"> -->
+              <img src="assets/Profile Picture/Profile Picture.heic">
+            </div>
+            <div class="hero-signature">
+              <p class="hero-signature-name">Rosario d'Antonio</p>
+              <svg class="hero-scribble" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M4 14 C 20 6, 30 18, 46 12 C 58 7, 66 18, 80 11 C 92 6, 100 16, 116 9"
+                  stroke="var(--sketch-blue)" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="116" cy="9" r="3.5" fill="var(--swift-orange)" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <svg class="divider" viewBox="0 0 1140 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true">
+        <path d="M0 14 Q 95 2, 190 14 T 380 14 T 570 14 T 760 14 T 950 14 T 1140 14" stroke="var(--card-border)"
+          stroke-width="2" fill="none" />
+      </svg>
+    </div>
+
+    <div class="wrap">
+
+      <section id="shipped">
+        <div class="section-head">
+          <div>
+            <p class="section-tag">~/projects/shipped</p>
+            <h2 class="section-title">Released</h2>
+          </div>
+          <p class="section-note">Released, maintained, and out in the world.</p>
+        </div>
+        <div class="shipped-grid" id="shipped-grid"></div>
+      </section>
+
+      <section id="prototypes">
+        <div class="section-head">
+          <div>
+            <p class="section-tag">~/projects/prototypes</p>
+            <h2 class="section-title">Works in progress</h2>
+          </div>
+          <p class="section-note">Smaller experiments, not yet released.</p>
+        </div>
+        <div class="proto-grid" id="proto-grid"></div>
+      </section>
+
+      <section id="about">
+        <div class="section-head">
+          <div>
+            <p class="section-tag">~/about</p>
+            <h2 class="section-title">A bit about me</h2>
+          </div>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm an iOS developer who never quite gave up drawing. Most of what I ship has art I made myself in it —
+              an icon set, a mascot, a loading state that's a tiny animation instead of a spinner.</p>
+            <p>I like small, finished things more than big, unfinished ones, which is why you'll find shipped apps next
+              to rough prototypes here — both matter to how I work.</p>
+            <p>Based remotely, open to freelance illustration, iOS contract work, or full-time roles.</p>
+          </div>
+          <div class="contact-card">
+            <p class="contact-label">GET IN TOUCH</p>
+            <ul class="contact-list">
+              <li><span>Email</span><a href="mailto:odd3002@gmail.com">odd3002@gmail.com <span
+                    class="arrow">→</span></a></li>
+              <li><span>GitHub</span><a href="https://github.com/Odd2003">github.com/Odd2003 <span
+                    class="arrow">→</span></a>
+              </li>
+              <li><span>Itch.io</span><a href="https://odd2003.itch.io">odd2003.itch.io <span class="arrow">→</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>Deployed on GitHub Pages.</footer>
+
+  <!-- project detail modal -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div class="modal-header">
+        <div class="modal-icon" id="modal-icon"></div>
+        <div class="modal-titles">
+          <span class="status-tab" id="modal-status"></span>
+          <h2 id="modal-title"></h2>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-links" id="modal-links"></div>
+        <p class="gallery-label">SCREENSHOTS &amp; ASSETS</p>
+        <div class="asset-grid" id="modal-assets"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- fullscreen single-image viewer -->
+  <div class="viewer-backdrop" id="viewer-backdrop">
+    <div class="viewer-img-wrap" id="viewer-img-wrap">
+      <button class="viewer-close" id="viewer-close" aria-label="Close image">✕</button>
+      <button class="viewer-nav viewer-prev" id="viewer-prev" aria-label="Previous image">‹</button>
+      <button class="viewer-nav viewer-next" id="viewer-next" aria-label="Next image">›</button>
+      <span id="viewer-content"></span>
+      <span class="viewer-count" id="viewer-count"></span>
+    </div>
+  </div>
+
+  <script>
+    /* ============ PROJECT DATA ============
+       Edit this array to add/change projects. Leave `icon` / `assets` image paths
+       empty ('') to keep placeholder boxes, or point them at real files, e.g.
+       icon: 'assets/driftwood/icon.png'
+       assets: ['assets/driftwood/1.png', 'assets/driftwood/2.png', ...]
+    */
+    const PROJECTS = {
+      shipped: [
+        {
+          id: 'realgo',
+          name: 'RealGO',
+          status: 'SHIPPED · App Store',
+          statusClass: 'shipped',
+          shortDesc: 'A custom navigation iOS app for the Bosco di Capodimonte featuring offline-capable pathfinding and interactive point-of-interest mapping.',
+          desc: 'Built using MapKit, this app guides users through park trails using a custom graph structure overlay and a proprietary A* pathfinding algorithm. It delivers real-time location tracking and detailed information on historical points of interest, ensuring visitors never get lost even with limited connectivity.',
+          tags: ['SwiftUI', 'MapKit', 'Core Graphics'],
+          icon: 'Assets/Apps/Icons/RealGOIconPortfolio.png',
+          assets: ['Assets/Apps/RealGO/RealGO_1.png', 'Assets/Apps/RealGO/RealGO_2.png', 'Assets/Apps/RealGO/RealGO_3.png'],
+          links: [{ label: 'App Store →', url: 'https://apps.apple.com/it/app/realgo/id6768687366?l=en-GBRealGO' }]
+        },
+        {
+          id: 'togocchi',
+          name: 'Togocchi',
+          status: 'SHIPPED · App Store',
+          statusClass: 'shipped',
+          shortDesc: 'A collaborative virtual pet app for iOS and watchOS featuring real-time iCloud syncing and custom pixel art.',
+          desc: 'Leveraging CloudKit, this app allows two users to share ownership and take daily turns caring for a virtual pet. It features custom, hand-drawn pixel art animations, an Apple Watch companion app for tracking walks, and a Home Screen Widget for instant pet status updates.',
+          tags: ['SwiftUI', 'CloudKit', 'watchOS', 'WidgetKit', 'Pixel Art', 'Animation'],
+          icon: 'Assets/Apps/Icons/OtterIcon.png',
+          assets: ['Assets/Apps/Togocchi/Togocchi_1.png', 'Assets/Apps/Togocchi/Togocchi_2.png', 'Assets/Apps/Togocchi/Togocchi_3.png', 'Assets/Apps/Togocchi/Togocchi_4.png'],
+          links: [{
+            label: 'App Store →', url: 'https://apps.apple.com/it/app/togocchi/id6760138160?l=en-GBToGocchi'
+          }]
+        },
+        {
+          id: 'coockiesurvivors',
+          name: 'Cookie Survivors',
+          status: 'SHIPPED · Itch',
+          statusClass: 'shipped',
+          shortDesc: 'A whimsical, action-packed rogue-like shoot \'em up where a glass of milk fights off waves of hungry cookies.',
+          desc: 'Inspired by Vampire Survivors, this game features custom pixel art, dynamic enemy wave spawning logic, and an escalating difficulty curve. Players level up to unlock unique weapons and synergistic power-ups to defend their milk from increasingly challenging hordes of baked goods.',
+          tags: ['Unity', 'Scriptable Objects', 'Pixel Art', 'Animation'],
+          icon: 'Assets/Apps/Icons/CookieSurvivorsLogoSquare.png',
+          assets: ['Assets/Apps/Cookie Survivors/CookieSurvivors_1.png', 'Assets/Apps/Cookie Survivors/CookieSurvivors_2.png', 'Assets/Apps/Cookie Survivors/CookieSurvivors_3.png', 'Assets/Apps/Cookie Survivors/CookieSurvivors_4.png'],
+          links: [{ label: 'Play on Itch →', url: 'https://odd2003.itch.io/cookies-survivors' }]
+        },
+      ],
+      prototypes: [
+        {
+          id: 'galacticgrades',
+          name: 'Galactic Grades',
+          status: 'PROTOTYPE',
+          statusClass: 'prototype',
+          shortDesc: 'An educational iPad game where children practice math skills to power defenses and protect Earth from an alien invasion.',
+          desc: 'Built using Vision for character recognition and PencilKit for Apple Pencil input, this educational game combats short attention spans by gamifying math practice. Children write answers on a canvas to fire cannons and defend Earth from alien spaceships, transforming traditional worksheets into an engaging, high-score-driven defense mission.',
+          tags: ['SwiftUI', 'Swift Data', 'Vision', 'PencilKit', 'Lottie Animations'],
+          icon: 'Assets/Apps/Icons/GalacticGradesIconPortfolio.png',
+          assets: ['Assets/Apps/Galactic Grades/GalacticGrades_1.png', 'Assets/Apps/Galactic Grades/GalacticGrades_2.png', 'Assets/Apps/Galactic Grades/GalacticGrades_3.png'],
+          links: []
+
+        },
+        {
+          id: 'tomodoro',
+          name: 'Tomodoro',
+          status: 'PROTOTYPE',
+          statusClass: 'prototype',
+          shortDesc: 'A gamified Pomodoro timer with an integrated music player and visual productivity analytics.',
+          desc: 'This focus app combines time-blocking with an integrated audio experience and a cute, gamified reward system where completed cycles sprout tomato characters in a virtual "PomoLand." Five tomatoes fuse into a rare golden variant, while the app tracks user habits through detailed data charts reflecting session counts and top focus music genres.',
+          tags: ['SwiftUI', 'Swift Data', 'AVFoundation'],
+          icon: 'Assets/Apps/Icons/Tomodoro.png',
+          assets: ['Assets/Apps/Tomodoro/Tomodoro_1.png', 'Assets/Apps/Tomodoro/Tomodoro_2.png', 'Assets/Apps/Tomodoro/Tomodoro_3.png'],
+          links: []
+        },
+        {
+          id: 'questboard',
+          name: 'Questboard',
+          status: 'PROTOTYPE',
+          statusClass: 'prototype',
+          shortDesc: 'A fantasy RPG-themed task manager designed to combat ADHD by turning custom daily goals into character-leveling quests.',
+          desc: 'Engineered to support users with short attention spans, this app allows users to self-author "quests" with custom names, descriptions, deadlines, and a 1-to-5-star difficulty scale. Higher-stakes tasks yield scaling gold and EXP rewards to maximize dopamine payoff, which users can spend on stat-boosting avatars and pets, backed by a 5-task streak system and timely deadline notifications.',
+          tags: ['SwiftUI', 'Swift Data'],
+          icon: 'Assets/Apps/Icons/Questboard.jpeg',
+          assets: ['Assets/Apps/Questboard/Questboard_1.jpeg', 'Assets/Apps/Questboard/Questboard_2.jpeg', 'Assets/Apps/Questboard/Questboard_3.jpeg', 'Assets/Apps/Questboard/Questboard_4.jpeg', 'Assets/Apps/Questboard/Questboard_5.jpeg'],
+          links: []
+        }
+      ]
+    };
+
+    function underlineSVG(color) {
+      return `<svg class="underline-svg" viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5 Q 25 1, 50 5 T 99 4" stroke="${color}" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`;
+    }
+
+    function iconInner(project) {
+      return project.icon
+        ? `<img src="${project.icon}" alt="${project.name} icon">`
+        : `<span>icon</span>`;
+    }
+
+    function renderCard(project, accent) {
+      const card = document.createElement('button');
+      card.className = 'card';
+      card.setAttribute('data-id', project.id);
+      card.innerHTML = `
+    <div class="card-body">
+      <div class="card-icon">${iconInner(project)}</div>
+      <div class="card-main">
+        <div class="card-title-row">
+          <h3 class="card-title">${project.name}${underlineSVG(accent)}</h3>
+          <span class="status-tab ${project.statusClass}">${project.status}</span>
+        </div>
+        <p class="card-desc">${project.shortDesc}</p>
+        <div class="tag-row">${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <p class="tap-hint">View screenshots →</p>
+      </div>
+    </div>`;
+      card.addEventListener('click', () => openModal(project));
+      return card;
+    }
+
+    const shippedGrid = document.getElementById('shipped-grid');
+    const protoGrid = document.getElementById('proto-grid');
+    PROJECTS.shipped.forEach(p => shippedGrid.appendChild(renderCard(p, '#2D5DA1')));
+    PROJECTS.prototypes.forEach(p => protoGrid.appendChild(renderCard(p, '#2D5DA1')));
+
+    /* ============ MODAL ============ */
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalIcon = document.getElementById('modal-icon');
+    const modalStatus = document.getElementById('modal-status');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalLinks = document.getElementById('modal-links');
+    const modalAssets = document.getElementById('modal-assets');
+    const modalCloseBtn = document.getElementById('modal-close');
+
+    let currentProject = null;
+    let lastFocusedEl = null;
+
+    function openModal(project) {
+      currentProject = project;
+      lastFocusedEl = document.activeElement;
+
+      modalIcon.innerHTML = iconInner(project);
+      modalStatus.textContent = project.status;
+      modalStatus.className = `status-tab ${project.statusClass}`;
+      modalTitle.textContent = project.name;
+      modalDesc.textContent = project.desc;
+
+      modalLinks.innerHTML = project.links.map(l =>
+        l.disabled ? `<a class="disabled">${l.label}</a>` : `<a href="${l.url}">${l.label}</a>`
+      ).join('');
+
+      modalAssets.innerHTML = project.assets.map((src, i) =>
+        `<div class="asset-thumb${src ? ' has-image' : ''}" data-index="${i}">${src ? `<img src="${src}" alt="${project.name} screenshot ${i + 1}">` : `<span>asset ${i + 1}</span>`}</div>`
+      ).join('');
+      modalAssets.querySelectorAll('.asset-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => openViewer(project, parseInt(thumb.dataset.index, 10)));
+      });
+
+      modalBackdrop.classList.add('open');
+      document.body.classList.add('modal-locked');
+      modalCloseBtn.focus();
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.remove('open');
+      document.body.classList.remove('modal-locked');
+      currentProject = null;
+      if (lastFocusedEl) lastFocusedEl.focus();
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) closeModal(); });
+
+    /* ============ FULLSCREEN VIEWER ============ */
+    const viewerBackdrop = document.getElementById('viewer-backdrop');
+    const viewerContent = document.getElementById('viewer-content');
+    const viewerCount = document.getElementById('viewer-count');
+    const viewerClose = document.getElementById('viewer-close');
+    const viewerPrev = document.getElementById('viewer-prev');
+    const viewerNext = document.getElementById('viewer-next');
+
+    let viewerIndex = 0;
+
+    function renderViewer() {
+      const assets = currentProject.assets;
+      const src = assets[viewerIndex];
+      viewerContent.innerHTML = src
+        ? `<img src="${src}" alt="${currentProject.name} screenshot ${viewerIndex + 1}">`
+        : `<span>asset ${viewerIndex + 1} of ${assets.length}</span>`;
+      viewerCount.textContent = `${viewerIndex + 1} / ${assets.length}`;
+    }
+
+    function openViewer(project, index) {
+      currentProject = project;
+      viewerIndex = index;
+      renderViewer();
+      viewerBackdrop.classList.add('open');
+    }
+
+    function closeViewer() { viewerBackdrop.classList.remove('open'); }
+
+    function stepViewer(delta) {
+      const len = currentProject.assets.length;
+      viewerIndex = (viewerIndex + delta + len) % len;
+      renderViewer();
+    }
+
+    viewerClose.addEventListener('click', closeViewer);
+    viewerPrev.addEventListener('click', () => stepViewer(-1));
+    viewerNext.addEventListener('click', () => stepViewer(1));
+    viewerBackdrop.addEventListener('click', (e) => { if (e.target === viewerBackdrop) closeViewer(); });
+
+    /* keyboard controls */
+    document.addEventListener('keydown', (e) => {
+      if (viewerBackdrop.classList.contains('open')) {
+        if (e.key === 'Escape') closeViewer();
+        if (e.key === 'ArrowLeft') stepViewer(-1);
+        if (e.key === 'ArrowRight') stepViewer(1);
+        return;
+      }
+      if (modalBackdrop.classList.contains('open')) {
+        if (e.key === 'Escape') closeModal();
+      }
+    });
+
+    /* basic swipe support for the viewer on touch devices */
+    let touchStartX = null;
+    viewerBackdrop.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    viewerBackdrop.addEventListener('touchend', (e) => {
+      if (touchStartX === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) stepViewer(dx > 0 ? -1 : 1);
+      touchStartX = null;
+    }, { passive: true });
+  </script>
+
+</body>
+
+</html>
