@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rosario d'Antonio — iOS Developer &amp; Illustrator</title>
-  <meta name="description" content="Portfolio of iOS apps and prototypes — code and illustration.">
+  <meta name="description" content="Portfolio of iOS apps and Unreleased projects — code and illustration.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -115,6 +115,17 @@
 
     .nav-links a:hover {
       color: var(--ink);
+    }
+
+    @media (max-width: 480px) {
+      .nav-mark {
+        font-size: 12px;
+      }
+
+      .nav-links {
+        gap: 14px;
+        font-size: 11px;
+      }
     }
 
     /* ---------- hero ---------- */
@@ -422,6 +433,9 @@
       padding: 4px 9px;
       border-radius: 5px;
       margin-bottom: 10px;
+      flex-shrink: 0;
+      /* ← add: tag keeps its own size, never gets squashed */
+      white-space: nowrap;
     }
 
     .status-tab.shipped {
@@ -934,7 +948,7 @@
       <a href="#top" class="nav-mark">rosario<span class="dot">.</span>dantonio</a>
       <nav class="nav-links">
         <a href="#shipped">shipped</a>
-        <a href="#prototypes">prototypes</a>
+        <a href="#prototypes">unreleased</a>
         <a href="#about">about</a>
       </nav>
     </div>
@@ -1004,8 +1018,8 @@
       <section id="prototypes">
         <div class="section-head">
           <div>
-            <p class="section-tag">~/projects/prototypes</p>
-            <h2 class="section-title">Works in progress</h2>
+            <p class="section-tag">~/projects/unreleased</p>
+            <h2 class="section-title">Unreleased</h2>
           </div>
           <p class="section-note">Smaller experiments, not yet released.</p>
         </div>
@@ -1024,7 +1038,7 @@
             <p>I'm an iOS developer who never quite gave up drawing. Most of what I ship has art I made myself in it —
               an icon set, a mascot, a loading state that's a tiny animation instead of a spinner.</p>
             <p>I like small, finished things more than big, unfinished ones, which is why you'll find shipped apps next
-              to rough prototypes here — both matter to how I work.</p>
+              to unrealeased ones here — both matter to how I work.</p>
             <p>Based remotely, open to freelance illustration, iOS contract work, or full-time roles.</p>
           </div>
           <div class="contact-card">
@@ -1130,7 +1144,7 @@
         {
           id: 'galacticgrades',
           name: 'Galactic Grades',
-          status: 'PROTOTYPE',
+          status: 'UNRELEASED',
           statusClass: 'prototype',
           shortDesc: 'An educational iPad game where children practice math skills to power defenses and protect Earth from an alien invasion.',
           desc: 'Built using Vision for character recognition and PencilKit for Apple Pencil input, this educational game combats short attention spans by gamifying math practice. Children write answers on a canvas to fire cannons and defend Earth from alien spaceships, transforming traditional worksheets into an engaging, high-score-driven defense mission.',
@@ -1143,7 +1157,7 @@
         {
           id: 'tomodoro',
           name: 'Tomodoro',
-          status: 'PROTOTYPE',
+          status: 'UNRELEASED',
           statusClass: 'prototype',
           shortDesc: 'A gamified Pomodoro timer with an integrated music player and visual productivity analytics.',
           desc: 'This focus app combines time-blocking with an integrated audio experience and a cute, gamified reward system where completed cycles sprout tomato characters in a virtual "PomoLand." Five tomatoes fuse into a rare golden variant, while the app tracks user habits through detailed data charts reflecting session counts and top focus music genres.',
@@ -1155,7 +1169,7 @@
         {
           id: 'questboard',
           name: 'Questboard',
-          status: 'PROTOTYPE',
+          status: 'UNRELEASED',
           statusClass: 'prototype',
           shortDesc: 'A fantasy RPG-themed task manager designed to combat ADHD by turning custom daily goals into character-leveling quests.',
           desc: 'Engineered to support users with short attention spans, this app allows users to self-author "quests" with custom names, descriptions, deadlines, and a 1-to-5-star difficulty scale. Higher-stakes tasks yield scaling gold and EXP rewards to maximize dopamine payoff, which users can spend on stat-boosting avatars and pets, backed by a 5-task streak system and timely deadline notifications.',
